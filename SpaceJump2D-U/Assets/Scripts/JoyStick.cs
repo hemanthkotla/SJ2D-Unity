@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JoyStick : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class JoyStick : MonoBehaviour
     private Vector2 pointc;
     private bool left, right;
     public float jump = 1.0f;
-
+    public Text Lives;
+    public Text Score;
     public Transform Innerc;
     public Transform Outerc;
 
