@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+
+[System.Serializable]
 
 public class JoyStick : MonoBehaviour
 {
@@ -20,10 +24,42 @@ public class JoyStick : MonoBehaviour
     public Transform Innerc;
     public Transform Outerc;
 
+
+    private int _lives;
+    private int _score;
+
+
+    public int lives
+    {
+        get { return _lives; }
+        set { _lives = value;
+            Lives.text = "Lives:" + _lives.ToString();
+
+            if (_lives < 1)
+            {
+                SceneManager.LoadScene("EndScene");
+            }
+        }
+    }
+
+
+    public int score
+    {
+        get { return _score; }
+        set { _score = value;
+            Score.text = "score:" + _score.ToString();
+        }
+    }
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         right = true;
+        lives = 3;
+        score = 0;
     }
 
     // Update is called once per frame
