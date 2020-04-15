@@ -11,6 +11,7 @@ public class JoyStick : MonoBehaviour
 {
     public Animator animator;
     public Transform player;
+    public Transform firepoint;
     public float speed = 2.0f;
     public float direc = 5.0f;
     public bool touchstart = false;
@@ -18,11 +19,15 @@ public class JoyStick : MonoBehaviour
     private Vector2 pointb;
     private Vector2 pointc;
     private bool left, right;
+    private bool btleft, btright;
     public float jump = 1.0f;
     public Text Lives;
     public Text Score;
     public Transform Innerc;
     public Transform Outerc;
+    private bool m_FacingRight = true;
+    public AudioSource Jumpsound;
+   
 
 
     private int _lives;
@@ -48,7 +53,18 @@ public class JoyStick : MonoBehaviour
         get { return _score; }
         set { _score = value;
             Score.text = "score:" + _score.ToString();
+
+            if(_score > 9)
+            {
+                //Instantiate(Boss1, spawn.position, spawn.rotation);
+                //return;
+            }
         }
+    }
+
+    public void mute()
+    {
+        AudioListener.pause = !AudioListener.pause;
     }
 
 
@@ -80,6 +96,7 @@ public class JoyStick : MonoBehaviour
             Outerc.GetComponent<SpriteRenderer>().enabled = true;
             float x = 2.0f;
             animator.SetFloat("speed", x);
+
            
         }
         if (Input.GetMouseButton(0))
@@ -106,23 +123,49 @@ public class JoyStick : MonoBehaviour
             Vector2 offset = pointb - pointA;
             Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
 
-            if(Input.GetAxis("Jump")> 0.1f)
+            if(player.position.y > -0.713)
             {
                 animator.SetFloat("Jump", 1);
+                
             }
 
-
+            else if (player.position.y < -0.713)
+            {
+                animator.SetFloat("Jump", -1);
+            }
             direc = offset.x;
 
-            if(direc < 0)
+            if (direc < 0)
             {
+
                 turnleft();
+                // turnbtleft();
+
+
             }
             if (direc > 0)
             {
                 turnright();
+                // turnbtright();
+
             }
-         
+
+
+            if (direc > 0 && !m_FacingRight)
+            {
+                // ... flip the player.
+                Flip();
+            }
+            // Otherwise if the input is moving the player left and the player is facing right...
+            else if (direc < 0 && m_FacingRight)
+            {
+                // ... flip the player.
+                Flip();
+            }
+
+
+
+
             moveplayer(direction );
 
             Innerc.transform.position = new Vector2(pointc.x + direction.x, pointc.y + direction.y) ;
@@ -132,8 +175,9 @@ public class JoyStick : MonoBehaviour
     {
         
         player.Translate(direction * speed * Time.deltaTime);
+       
 
-     
+
 
 
     }
@@ -142,9 +186,18 @@ public class JoyStick : MonoBehaviour
     {
         if (left)
             return;
+
+
         player.localScale = new Vector3(-player.localScale.x, player.localScale.y, player.localScale.z);
+        
+
+        
+
+
         left = true;
         right = false;
+
+
     }
 
     public void turnright()
@@ -154,13 +207,24 @@ public class JoyStick : MonoBehaviour
             return;
 
         player.localScale = new Vector3(Mathf.Abs(player.localScale.x), player.localScale.y, player.localScale.z);
+        
+        
+
         left = false;
         right = true;
     }
 
+    public void Flip()
+    {
+        
+        firepoint.Rotate(0f, 180f, 0f);
+
+        m_FacingRight = !m_FacingRight;
+    }
+
    
 
-    
+
 
 
 }
