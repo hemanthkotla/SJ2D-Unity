@@ -34,6 +34,8 @@ public class Boss : MonoBehaviour
         if (life < 1)
         {
             Destroy (gameObject);
+            Instantiate(smallexplosion, transform.position, transform.rotation);
+
         }
     }
 
@@ -54,7 +56,7 @@ void OnTriggerEnter2D(Collider2D col)
 
             case "Bullet":
                 life -= 1;
-                Instantiate(smallexplosion, transform.position, transform.rotation);
+                
                 Destroy(col.gameObject);
 
                 break;

@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
                 Instantiate(explosion, transform.position, transform.rotation);
                 Destroy(explosion);
-                explosionsound.Play();
+                //explosionsound.Play();
                 break;
             
         }

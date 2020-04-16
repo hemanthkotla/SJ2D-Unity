@@ -11,8 +11,15 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //if (Input.GetKey(KeyCode.A))
+        //{
+        //    shoot();
+        //    return;
+        //}
     }
+
+
+    
 
     public void FireButton_Click()
     {
@@ -20,9 +27,11 @@ public class Weapon : MonoBehaviour
         Bulletsound.Play();
     }
 
+
     void shoot()
     {
         Instantiate(bullet, fire.position, fire.rotation);
+        return;
 
     }
 }

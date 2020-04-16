@@ -9,7 +9,7 @@ public class collision : MonoBehaviour
     public AudioSource hitsound;
     public Transform enemy;
     public JoyStick gamecontroller;
-    public GameObject Boss1;
+    public Transform Boss1;
     public Transform spawn;
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -44,7 +44,7 @@ public class collision : MonoBehaviour
 
         }
 
-        if (gamecontroller.score > 9)
+        if (gamecontroller.score == 20)
         {
             Instantiate(Boss1, spawn.position, spawn.rotation);
             return;
