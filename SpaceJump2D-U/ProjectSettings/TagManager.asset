@@ -9,6 +9,7 @@ TagManager:
   - Reward
   - Boss
   - Bullet
+  - Blife
   layers:
   - Default
   - TransparentFX

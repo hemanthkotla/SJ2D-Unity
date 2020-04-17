@@ -6,25 +6,27 @@ public class Weapon : MonoBehaviour
 {
     public Transform fire;
     public Transform bullet;
-    public AudioSource Bulletsound;
+    //public AudioSource Bulletsound;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //if (Input.GetKey(KeyCode.A))
+        //if (Input.GetKey(KeyCode.Space))
         //{
-        //    shoot();
+           
+        //    Instantiate(bullet, fire.position, fire.rotation);
         //    return;
         //}
+
+
     }
 
 
-    
 
     public void FireButton_Click()
     {
         shoot();
-        Bulletsound.Play();
+        //Bulletsound.Play();
     }
 
 

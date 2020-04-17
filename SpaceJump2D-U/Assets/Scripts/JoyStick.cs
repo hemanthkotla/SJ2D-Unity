@@ -27,7 +27,8 @@ public class JoyStick : MonoBehaviour
     public Transform Outerc;
     private bool m_FacingRight = true;
     public AudioSource Jumpsound;
-   
+    private Vector2 screenbound;
+
 
 
     private int _lives;
@@ -54,11 +55,11 @@ public class JoyStick : MonoBehaviour
         set { _score = value;
             Score.text = "score:" + _score.ToString();
 
-            if(_score > 9)
+            if (_score == 110)
             {
-                //Instantiate(Boss1, spawn.position, spawn.rotation);
-                //return;
+                SceneManager.LoadScene("Level2");
             }
+
         }
     }
 
@@ -73,6 +74,7 @@ public class JoyStick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        screenbound = Camera.main.ScreenToWorldPoint(new Vector3(1.1f, 0.5f, 10f));
         right = true;
         lives = 3;
         score = 0;
@@ -81,8 +83,13 @@ public class JoyStick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < screenbound.y)
+        {
+            Destroy(player.gameObject);
+            SceneManager.LoadScene("EndScene");
 
-       
+        }
+
 
 
         if (Input.GetMouseButtonDown(0))

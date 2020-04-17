@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 
@@ -11,30 +13,48 @@ public class Boss : MonoBehaviour
     Vector3 directionToTarget;
     public GameObject explosion;
     public JoyStick gamecontroller;
-    private int life;
+    
     public AudioSource hit;
     public GameObject smallexplosion;
+    public Text Blife;
 
+
+    private int life;
 
 
     void Start()
     {
         target = GameObject.Find("Player");
 
+        
         rb = GetComponent<Rigidbody2D>();
-        moveSpeed = 0.5f;
-        life = 4;
+        moveSpeed = 2f;
+        
+        life = 100;
+        
+       
+        //Debug.Log(BLIFE.text);
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveBoss();
 
-        if (life < 1)
+
+
+
+        if (gamecontroller.score == 100)
+        {
+            MoveBoss();
+            Blife.text = "Boss Life : " + life.ToString();
+        }
+
+
+            if (life < 1)
         {
             Destroy (gameObject);
             Instantiate(smallexplosion, transform.position, transform.rotation);
+            SceneManager.LoadScene("WonScene");
 
         }
     }
@@ -48,14 +68,10 @@ void OnTriggerEnter2D(Collider2D col)
         switch (col.gameObject.tag)
         {
 
-            //case "Player":
-            //    hit.Play();
-            //    Debug.Log("********************Player****************");
-            //    gamecontroller.lives -= 1;
-            //    break;
+           
 
             case "Bullet":
-                life -= 1;
+                life -= 10;
                 
                 Destroy(col.gameObject);
 
@@ -63,8 +79,7 @@ void OnTriggerEnter2D(Collider2D col)
         }
     }
 
-   
-
+  
 
 
 void MoveBoss()

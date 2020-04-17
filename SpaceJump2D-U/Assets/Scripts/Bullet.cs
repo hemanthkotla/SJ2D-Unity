@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     public float speed = 15f;
     public Rigidbody2D rb;
     public JoyStick gamecontroller;
-    public AudioSource explosionsound;
+    
    
     public GameObject explosion;
     void Start()
@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
                 Instantiate(explosion, transform.position, transform.rotation);
                 Destroy(explosion);
-                //explosionsound.Play();
+               
                 break;
             
         }
