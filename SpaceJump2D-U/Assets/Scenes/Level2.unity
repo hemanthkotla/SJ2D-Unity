@@ -2419,7 +2419,7 @@ MonoBehaviour:
   Score: {fileID: 255660422}
   Innerc: {fileID: 1274667447}
   Outerc: {fileID: 634068702}
-  Jumpsound: {fileID: 0}
+  Levelupsound: {fileID: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2790,6 +2790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire: {fileID: 1799740648}
   bullet: {fileID: 231944689076861716, guid: 8aba49c21ffbb4d18b0bd68ecba2c13e, type: 3}
+  Bulletsound: {fileID: 566625234}
 --- !u!82 &566625234
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3314,8 +3315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1197, y: -92}
-  m_SizeDelta: {x: 253.20001, y: 71.900024}
+  m_AnchoredPosition: {x: 1287.5, y: -113.7}
+  m_SizeDelta: {x: 434.3, y: 115.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &614532880
 MonoBehaviour:
@@ -3330,19 +3331,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MinSize: 0
+    m_MaxSize: 64
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
